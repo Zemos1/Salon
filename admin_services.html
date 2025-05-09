@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="admin_services.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="sidebar">
+        <div class="logo">
+
+        </div>
+        <hr>
+        <div class="navbar">
+            <ul>
+                <li><a href="admin_dashboard.html">Dashboard</a></li>
+                <li><a href="admin_services.html">Services</a></li>
+                <li><a href="admin_client.html">Clients</a></li>
+                <li><a href="admin_appointments.html">Appointments</a></li>
+                <li><a href="">Receipt</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="content">
+        <div class="header">
+            <input type="search" name="searchnar" id="search" placeholder="Search">
+
+            <button class="clear-btn">Sign out</button>
+        </div>
+
+        <div class="table-content">
+        
+        <label id="service-word">Services</label>
+
+        <div class="services-table">
+            <button onclick="addServices()" id="addbtn">+ Create</button>
+            <table class="table" id="service-tables">
+            <thead class="thead">
+                <tr>
+                    <th>Service</th>
+                    <th>Category</th>
+                    <th>Price (P)</th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                
+            </tbody>
+            </table>
+        </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            loadServices();
+        })
+
+        function addServices(service = {name: "", category: "", price: ""}){
+            const table = document.getElementById("service-tables").getElementsByTagName("tbody")[0];
+            const newRow = table.insertRow();
+
+            newRow.innerHTML = `
+            <td><input type = "text" value = "${service.name}" ${service.name ? "disabled" : ""}></td>
+            <td><input type = "text" value = "${service.category}" ${service.category ? "disabled" : ""}></td>
+            <td><input type = "number" value = "${service.price}" ${service.price ? "disabled" : ""}></td>
+            <td>
+                <button onclick = "editRow (this)"> ${service.name ? "Edit" : "Save"} </button>
+                <button onclick ="deleteRow(this)"> Delete </button>
+            </td> 
+            `;
+
+            saveServices();
+        }
+
+        function deleteRow (btn){
+            const row = btn.parentNode.parentNode;
+            row.remove();
+            saveServices();
+        }
+
+        function editRow(btn){
+            const row = btn.parentNode.parentNode;
+            const inputs = row.querySelectorAll("input");
+
+            if(btn.textContent === "Edit"){
+                inputs.forEach(input => input.disabled = false);
+                btn.textContent = "Save";
+            } else {
+                inputs.forEach(input => input.disabled = true);
+                btn.textContent = "Edit";
+                saveServices();
+            }
+        }
+
+        function saveServices(){
+            const tableRows = document.querySelectorAll("#service-tables tbody tr");
+            const services = [];
+
+            tableRows.forEach(row =>{
+                const inputs = row.querySelectorAll("input");
+                const service = {
+                    name: inputs[0].value.trim(),
+                    category: inputs[1].value.trim(),
+                    price: inputs[2].value.trim()
+                };
+                if(service.name){
+                    services.push(service);
+                }
+            });
+
+            localStorage.setItem("salonServices", JSON.stringify(services));
+        }
+
+        function loadServices(){
+            const savedServices = JSON.parse(localStorage.getItem("salonServices")) || [];
+            savedServices.forEach(service => addServices(service));
+        }
+
+
+
+    </script>
+
+</body>
+</html>

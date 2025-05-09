@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maketh Salon Services</title>
+    <link rel="stylesheet" href="services.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Welcome to Maketh Salon</h1>
+            <p>Your style, our expertise.</p>
+        </header>
+
+        <section class="services">
+            <h2>Our Services</h2>
+            <ul>
+                <li><strong>Haircut and Coloring:</strong> Tailored looks that complement your personality.</li>
+                <li><strong>Rebonding:</strong> Achieve sleek, straight hair with long-lasting results.</li>
+                <li><strong>Keratin Therapy:</strong> Professional treatments for smooth, frizz-free hair.</li>
+                <li><strong>Perming:</strong> Add beautiful curls and waves for a voluminous look.</li>
+                <li><strong>Ordinary/Intense Treatment:</strong> Nourishing treatments to restore vitality and shine.</li>
+            </ul>
+        </section>
+
+        <section class="appointment">
+            <h2>Make an Appointment</h2>
+            <form action="services.php" method="POST">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="phone">Phone Number:</label>
+                <input type="tel" id="phone" name="phone" required>
+
+                <label for="service">Service Required:</label>
+                <select id="service" name="service" required>
+                    <option value="Haircut and Coloring">Haircut and Coloring</option>
+                    <option value="Rebonding">Rebonding</option>
+                    <option value="Keratin Therapy">Keratin Therapy</option>
+                    <option value="Perming">Perming</option>
+                    <option value="Ordinary Treatment">Ordinary Treatment</option>
+                    <option value="Intense Treatment">Intense Treatment</option>
+                </select>
+
+                <label for="date">Preferred Date:</label>
+                <input type="date" id="date" name="date" required>
+
+                <label for="time">Preferred Time:</label>
+                <input type="time" id="time" name="time" required>
+
+                <label for="notes">Additional Notes:</label>
+                <textarea id="notes" name="notes"></textarea>
+
+                <button type="submit">Submit Appointment Request</button>
+            </form>
+        </section>
+    </div>
+</body>
+</html>

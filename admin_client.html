@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="admin_client.css">
+    <title>Document</title>
+</head>
+<body>
+    
+    <div class="sidebar">
+        <div class="logo">
+
+        </div>
+        <hr>
+        <div class="navbar">
+            <ul>
+                <li><a href="admin_dashboard.html">Dashboard</a></li>
+                <li><a href="admin_services.html">Services</a></li>
+                <li><a href="admin_client.html">Clients</a></li>
+                <li><a href="admin_appointments.html">Appointments</a></li>
+                <li><a href="">Receipt</a></li>
+            </ul>
+        </div>
+    </div>
+
+<div class="content">
+        <div class="header">
+            <input type="search" name="searchnar" id="search" placeholder="Search">
+
+            <button class="clear-btn">Sign out</button>
+        </div>
+
+        <div class="table-content">
+        
+        <label id="client-word">Clients</label>
+
+    <div class="table-container">
+        <button onclick="addClient()" id="addbtn">+ Create</button>
+            <table class="table" id="table-client">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>ContactNo.</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                </tbody>
+            </table>
+    </div>
+    </div>
+</div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () =>{
+            loadClients();
+        });
+
+        let counter = 1;
+
+        function addClient(client = {name: "", email: "", contact: ""}){
+            const table = document.getElementById("table-client").getElementsByTagName("tbody")[0];
+            const newRow = table.insertRow();
+
+            const cust_ID = String(counter).padStart(4, '0');
+
+            newRow.innerHTML = `
+            <td>${cust_ID}</td>
+            <td><input type="text" value="${client.name}" ${client.name ? "disabled" : ""}></td>
+            <td><input type="email" value="${client.email}" ${client.email ? "disabled" : ""}></td>
+            <td><input type="text" value="${client.contact}" ${client.contact ? "disabled" : ""}></td>
+            <td>
+                <button onclick ="editRow (this)"> ${client.name ? "Edit" : "Save"} </button>
+                <button onclick ="deleteRow(this)"> Delete </button>
+            </td> 
+            `;
+
+            counter++;
+            saveClient();
+        }
+
+        function deleteRow (btn){
+            const row = btn.parentNode.parentNode;
+            row.remove();
+            saveClient();
+        }
+
+        function editRow(btn){
+            const row = btn.parentNode.parentNode;
+            const inputs = row.querySelectorAll("input");
+
+            if(btn.textContent === "Edit"){
+                inputs.forEach(input => input.disabled = false);
+                btn.textContent = "Save";
+            } else {
+                inputs.forEach(input => input.disabled = true);
+                btn.textContent = "Edit";
+                saveClient();
+            }
+        }
+
+        function saveClient(){
+            const tableRows = document.querySelectorAll("#table-client tbody tr");
+            const clientsQ = [];
+
+            tableRows.forEach(row =>{
+                const inputs = row.querySelectorAll("input");
+                const client = {
+                    name: inputs[0].value.trim(),
+                    email: inputs[1].value.trim(),
+                    contact: inputs[2].value.trim()
+                };
+                if(client.name){
+                    clientsQ.push(client);
+                }
+            });
+
+            localStorage.setItem("salonClients", JSON.stringify(clientsQ));
+        }
+
+        function loadClients(){
+            const savedClients = JSON.parse(localStorage.getItem("salonClients")) || [];
+            savedClients.forEach(client => addClient(client));
+        }
+
+
+    </script>
+</body>
+</html>

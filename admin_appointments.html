@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="admin_appointments.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="sidebar">
+        <div class="logo">
+
+        </div>
+        <hr>
+        <div class="navbar">
+            <ul>
+                <li><a href="admin_dashboard.html">Dashboard</a></li>
+                <li><a href="admin_services.html">Services</a></li>
+                <li><a href="admin_client.html">Clients</a></li>
+                <li><a href="admin_appointments.html">Appointments</a></li>
+                <li><a href="">Receipt</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="content">
+        <div class="header">
+            <input type="search" name="searchnar" id="search" placeholder="Search">
+
+            <button class="clear-btn">Sign out</button>
+        </div>
+
+        <div class="table-content">
+            <h2>Appointments</h2>
+        
+                <div class="appointment-table">
+                    <button onclick="addAppointment()" id="addbtn">+ Add</button>
+                    <table class="table" id="app-tables">
+                    <thead class="thead">
+                        <tr>
+                            <th>Appointment ID</th>
+                            <th>Service ID</th>
+                            <th>Client ID</th>
+                            <th>Date of Booking</th>
+                            <th>Date of Appointment</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                    </tbody>
+                    </table>
+                </div>
+        </div>
+    </div>    
+
+    <script>
+
+        let counter = 1;
+
+        function addAppointment(){
+            const table = document.getElementById("app-tables").getElementsByTagName("tbody")[0];
+            const addRow = table.insertRow();
+
+            const aptID = String(counter).padStart(6, '0');
+            const servID = Math.floor(1000+Math.random() * 9000);
+            const clientID = String(counter).padStart(4,'0');
+            const bookD = new Date ().toISOString().split("T")[0];
+            const appD = new Date();
+            appD.setDate(appD.getDate());
+
+            addRow.innerHTML = `
+            <td contenteditable="true">${aptID}</td>
+            <td contenteditable="true">${servID}</td>
+            <td contenteditable="true">${clientID}</td>
+            <td contenteditable="true">${bookD}</td>
+            <td contenteditable="true">${appD}</td>
+            <td>
+                <select id="status-select pending" onchange="color(this)">
+                    <option value="pending" target="_pending">Pending</option>
+                    <option value="completed" target="_comp">Completed</option>
+                    <option value="cancelled" target="_cancel">Canceled</option>
+                </select>    
+            </td>   
+            `;
+
+            counter++;
+        }
+
+        function color(select){
+            select.classList.remove("pending", "completed", "cancelled");
+            select.classList.add(select.value);
+        }
+
+        
+    </script>
+
+</body>
+</html>

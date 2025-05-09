@@ -1,0 +1,292 @@
+:root{
+
+    /*Colors*/
+    --clr-light: #FFFFFF;
+    --clr-light2: #F9F3F1;
+    --clr-light3: #A2886A;
+    --clr-light4: #F3F0EB;
+    --clr-dark1: #000000;
+    --clr-dark2: #191919;
+    --clr-dark3: #2D2D2D;
+    --clr-border-mid1: #B58152;
+    --clr-border-mid2: #A2886A;
+    --clr-border-mid3: #ECDCD6;
+    --clr-font-dark: #555555;
+
+
+
+    /*font sizes*/
+    --font-xsmall: 14px;
+    --font-small: 16px;
+    --font-medium: 20px;
+    --font-large: 32px;
+    --font-xlarge: 52px;
+
+
+    /*font weight*/
+    --fontweight-light: 400;
+    --fontweight-mid: 500;
+    --fontweight-heavy: 700;
+
+    /*paragraph spacing*/
+    --font-space-small: 4px;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    font-family: 'Jost';
+	display: flex;
+	flex-direction: column;
+	height: 100vh;
+	background-color: var(--clr-dark3);
+}
+
+a{
+    text-decoration: none;
+    color: black;
+}
+
+li{
+    list-style: none;
+}
+
+/*HEADER SECTION*/
+.banner{
+    background-color: var(--clr-light2);
+    display: flex;
+    height: 8vh;
+}
+
+
+.nav-bar-main{
+    background-color: var(--clr-light);
+    display: flex;
+    height: 11vh;
+	padding: 3vh;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.nav-bar-logo{
+    align-items: center;
+    margin-left: 2vw;
+}
+
+.nav-bar-content{
+    margin-right: 4vw;
+}
+
+.nav-bar-content ul{
+    display: flex;
+}
+
+.nav-bar-content ul li{
+    margin-left: 2vw;
+}    
+
+.logo-img{
+	max-width: 100%;
+    max-height: 100%;
+}
+
+.contact-facebook{
+    display: flex;
+    margin-left: 2vw;
+    
+}
+
+.contact-text{
+    font-size: var(--font-xsmall);
+    font-weight: var(--fontweight-light);
+    word-spacing: var(--font-space-small);
+    align-self: center;
+    align-content: center;
+}
+
+.line-separator{
+    background-color: var(--clr-border-mid3);
+    margin-left: 2vw;
+    width: 2px;
+    height: auto;
+}
+
+.contact-number{
+    display: flex;
+    margin-left: 2vw;
+}
+/**/
+
+
+
+
+
+
+/*APPOINTMENT FORM*/
+.appointment-form{
+	background-color:white;
+	padding: 10vw 10vh;
+	display:flex;
+	justify-content:center;
+	margin-top:10vh;
+	margin-bottom:10vh;
+	margin-left:auto;
+	margin-right:auto;
+	padding-top:6vh;
+	padding-bottom:6vh;
+	border-radius:8px;
+	box-shadow: 4px;
+}
+
+.appointment-form h1{
+	text-align:center;
+	margin-bottom:8vh;
+}
+
+.appointment-form h3{
+	text-align:center;
+	margin-bottom:1vh;
+}
+
+.service-section {
+	margin-top:4vh;
+	margin-bottom:3vh;
+	display:flex;
+	justify-content:space-between;
+}
+.price-section {
+	margin-top:1vh;
+	margin-bottom:12vh;
+	display:flex;
+	justify-content:space-between;
+}
+
+.date-section {
+	margin-top:4vh;
+	margin-bottom:3vh;
+	display:flex;
+	justify-content:space-between;
+}
+
+.time-section {
+	margin-top:4vh;
+	margin-bottom:8vh;
+	display:flex;
+	justify-content:space-between;
+}
+
+
+.name-section {
+	margin-top:4vh;
+	margin-bottom:2vh;
+	display:flex;
+	justify-content:space-between;
+}
+
+.email-section {
+	margin-top:1vh;
+	margin-bottom:2vh;
+	display:flex;
+	justify-content:space-between;
+}
+
+.contactno-section {
+	margin-top:1vh;
+	margin-bottom:10vh;
+	display:flex;
+	justify-content:space-between;
+}
+
+.submit{
+	background-color:#ed806b;
+	display:block;
+	color:white;
+	padding: 12px 36px;
+	margin-left:auto;
+	margin-right:auto;
+	margin-bottom:2vh;
+	border-radius: 32px;
+	font-size:16px;
+	font-family:'Jost';
+	border:none;
+}
+
+.submit:hover {
+	background-color: #c65e45; /* Green */
+	color: white;
+}
+
+/**/
+
+
+
+
+
+
+
+
+/* FOOTER ELEMENTS */
+footer{
+	background-color: var(--clr-dark2);
+	position:relative;
+	padding:5vh;
+	padding-top:7vh;
+	padding-bottom:20vh;
+	color: white;
+	margin-top:auto
+}	
+
+footer > div{
+	display:inline-block;
+	margin-top:0;
+	vertical-align:top;
+}
+footer > .bottombanner{
+	display:block;
+	background-color: var(--clr-dark3);
+	position:absolute;
+	bottom:0;
+	left:0;
+	width:100%;
+	height:12vh;
+	margin-top:0;
+	vertical-align:top;
+}
+
+.footer-info{
+	padding-right:25%;
+}
+
+.working-hours{
+	text-wrap: nowrap;
+	float: right;
+}
+.contact-us{
+	width: 25%;
+	padding-left:10%;
+	float:right;
+}
+footer p, b{
+	padding:5px;
+}
+footer p{
+	font-size: var(--font-xsmall);
+}
+
+.bottombanner > span {
+	position:absolute;
+	top:50%;
+	transform: translate(0, -50%);
+}
+
+.bottombanner > .termsofuse {
+	right:2%;
+}
+
+.bottombanner > .privpolicy {
+	right:10%;
+}
+/**/
